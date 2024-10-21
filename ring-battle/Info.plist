@@ -4,7 +4,7 @@
 <dict>
     <!-- ... other keys ... -->
     <key>NFCReaderUsageDescription</key>
-    <string>We need to use NFC to read information from your NFC ring.</string>
+    <string>We need to use NFC to read and write information from/to your NFC ring.</string>
     <key>com.apple.developer.nfc.readersession.formats</key>
     <array>
         <string>NDEF</string>
