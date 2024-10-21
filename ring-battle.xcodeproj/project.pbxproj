@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		7ECCF59B2CC6CC7A006525FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7ECCF5802CC6CC78006525FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7ECCF5872CC6CC78006525FF;
+			remoteInfo = "ring-battle";
+		};
+		7ECCF5A52CC6CC7A006525FF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7ECCF5802CC6CC78006525FF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7ECCF5872CC6CC78006525FF;
+			remoteInfo = "ring-battle";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		7ECCF5882CC6CC78006525FF /* ring-battle.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ring-battle.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ECCF59A2CC6CC7A006525FF /* ring-battleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ring-battleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7ECCF5A42CC6CC7A006525FF /* ring-battleUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ring-battleUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		7ECCF58A2CC6CC78006525FF /* ring-battle */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "ring-battle";
+			sourceTree = "<group>";
+		};
+		7ECCF59D2CC6CC7A006525FF /* ring-battleTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "ring-battleTests";
+			sourceTree = "<group>";
+		};
+		7ECCF5A72CC6CC7A006525FF /* ring-battleUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "ring-battleUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7ECCF5852CC6CC78006525FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ECCF5972CC6CC7A006525FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ECCF5A12CC6CC7A006525FF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7ECCF57F2CC6CC78006525FF = {
+			isa = PBXGroup;
+			children = (
+				7ECCF58A2CC6CC78006525FF /* ring-battle */,
+				7ECCF59D2CC6CC7A006525FF /* ring-battleTests */,
+				7ECCF5A72CC6CC7A006525FF /* ring-battleUITests */,
+				7ECCF5892CC6CC78006525FF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7ECCF5892CC6CC78006525FF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7ECCF5882CC6CC78006525FF /* ring-battle.app */,
+				7ECCF59A2CC6CC7A006525FF /* ring-battleTests.xctest */,
+				7ECCF5A42CC6CC7A006525FF /* ring-battleUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7ECCF5872CC6CC78006525FF /* ring-battle */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ECCF5AE2CC6CC7A006525FF /* Build configuration list for PBXNativeTarget "ring-battle" */;
+			buildPhases = (
+				7ECCF5842CC6CC78006525FF /* Sources */,
+				7ECCF5852CC6CC78006525FF /* Frameworks */,
+				7ECCF5862CC6CC78006525FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				7ECCF58A2CC6CC78006525FF /* ring-battle */,
+			);
+			name = "ring-battle";
+			packageProductDependencies = (
+			);
+			productName = "ring-battle";
+			productReference = 7ECCF5882CC6CC78006525FF /* ring-battle.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7ECCF5992CC6CC7A006525FF /* ring-battleTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ECCF5B12CC6CC7A006525FF /* Build configuration list for PBXNativeTarget "ring-battleTests" */;
+			buildPhases = (
+				7ECCF5962CC6CC7A006525FF /* Sources */,
+				7ECCF5972CC6CC7A006525FF /* Frameworks */,
+				7ECCF5982CC6CC7A006525FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7ECCF59C2CC6CC7A006525FF /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7ECCF59D2CC6CC7A006525FF /* ring-battleTests */,
+			);
+			name = "ring-battleTests";
+			packageProductDependencies = (
+			);
+			productName = "ring-battleTests";
+			productReference = 7ECCF59A2CC6CC7A006525FF /* ring-battleTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7ECCF5A32CC6CC7A006525FF /* ring-battleUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7ECCF5B42CC6CC7A006525FF /* Build configuration list for PBXNativeTarget "ring-battleUITests" */;
+			buildPhases = (
+				7ECCF5A02CC6CC7A006525FF /* Sources */,
+				7ECCF5A12CC6CC7A006525FF /* Frameworks */,
+				7ECCF5A22CC6CC7A006525FF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7ECCF5A62CC6CC7A006525FF /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				7ECCF5A72CC6CC7A006525FF /* ring-battleUITests */,
+			);
+			name = "ring-battleUITests";
+			packageProductDependencies = (
+			);
+			productName = "ring-battleUITests";
+			productReference = 7ECCF5A42CC6CC7A006525FF /* ring-battleUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7ECCF5802CC6CC78006525FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					7ECCF5872CC6CC78006525FF = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					7ECCF5992CC6CC7A006525FF = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 7ECCF5872CC6CC78006525FF;
+					};
+					7ECCF5A32CC6CC7A006525FF = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = 7ECCF5872CC6CC78006525FF;
+					};
+				};
+			};
+			buildConfigurationList = 7ECCF5832CC6CC78006525FF /* Build configuration list for PBXProject "ring-battle" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7ECCF57F2CC6CC78006525FF;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 7ECCF5892CC6CC78006525FF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7ECCF5872CC6CC78006525FF /* ring-battle */,
+				7ECCF5992CC6CC7A006525FF /* ring-battleTests */,
+				7ECCF5A32CC6CC7A006525FF /* ring-battleUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7ECCF5862CC6CC78006525FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ECCF5982CC6CC7A006525FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ECCF5A22CC6CC7A006525FF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7ECCF5842CC6CC78006525FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ECCF5962CC6CC7A006525FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ECCF5A02CC6CC7A006525FF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7ECCF59C2CC6CC7A006525FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7ECCF5872CC6CC78006525FF /* ring-battle */;
+			targetProxy = 7ECCF59B2CC6CC7A006525FF /* PBXContainerItemProxy */;
+		};
+		7ECCF5A62CC6CC7A006525FF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7ECCF5872CC6CC78006525FF /* ring-battle */;
+			targetProxy = 7ECCF5A52CC6CC7A006525FF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		7ECCF5AC2CC6CC7A006525FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7ECCF5AD2CC6CC7A006525FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7ECCF5AF2CC6CC7A006525FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ring-battle/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yourcompany.ring-battle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7ECCF5B02CC6CC7A006525FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"ring-battle/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yourcompany.ring-battle";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7ECCF5B22CC6CC7A006525FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yourcompany.ring-battleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ring-battle.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ring-battle";
+			};
+			name = Debug;
+		};
+		7ECCF5B32CC6CC7A006525FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yourcompany.ring-battleTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ring-battle.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/ring-battle";
+			};
+			name = Release;
+		};
+		7ECCF5B52CC6CC7A006525FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yourcompany.ring-battleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ring-battle";
+			};
+			name = Debug;
+		};
+		7ECCF5B62CC6CC7A006525FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "yourcompany.ring-battleUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "ring-battle";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7ECCF5832CC6CC78006525FF /* Build configuration list for PBXProject "ring-battle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ECCF5AC2CC6CC7A006525FF /* Debug */,
+				7ECCF5AD2CC6CC7A006525FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ECCF5AE2CC6CC7A006525FF /* Build configuration list for PBXNativeTarget "ring-battle" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ECCF5AF2CC6CC7A006525FF /* Debug */,
+				7ECCF5B02CC6CC7A006525FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ECCF5B12CC6CC7A006525FF /* Build configuration list for PBXNativeTarget "ring-battleTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ECCF5B22CC6CC7A006525FF /* Debug */,
+				7ECCF5B32CC6CC7A006525FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7ECCF5B42CC6CC7A006525FF /* Build configuration list for PBXNativeTarget "ring-battleUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7ECCF5B52CC6CC7A006525FF /* Debug */,
+				7ECCF5B62CC6CC7A006525FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7ECCF5802CC6CC78006525FF /* Project object */;
+}
