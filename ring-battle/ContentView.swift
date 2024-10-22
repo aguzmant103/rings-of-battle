@@ -26,9 +26,9 @@ struct ContentView: View {
                 nfcReader.scanNFC { result in
                     switch result {
                     case .success(let message):
-                        nfcMessage = message
+                        nfcMessage = "Read from NFC: \(message)"
                     case .failure(let error):
-                        nfcMessage = "Error: \(error.localizedDescription)"
+                        handleNFCError(error)
                     }
                 }
             }) {
@@ -49,7 +49,7 @@ struct ContentView: View {
                     case .success:
                         nfcMessage = "Successfully wrote to NFC tag"
                     case .failure(let error):
-                        nfcMessage = "Error writing to NFC: \(error.localizedDescription)"
+                        handleNFCError(error)
                     }
                 }
             }) {
@@ -59,6 +59,21 @@ struct ContentView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
+        }
+    }
+
+    private func handleNFCError(_ error: Error) {
+        if let nfcError = error as? NFCReaderError {
+            switch nfcError.code {
+            case .readerSessionInvalidationErrorSystemIsBusy:
+                nfcMessage = "NFC is busy. Please try again in a moment."
+            default:
+                nfcMessage = "Error: \(nfcError.localizedDescription)"
+            }
+        } else if (error as NSError).domain == "NFCError" && (error as NSError).code == 203 {
+            nfcMessage = "NFC is not available. Please check your device settings."
+        } else {
+            nfcMessage = "Error: \(error.localizedDescription)"
         }
     }
 }

@@ -1,6 +1,6 @@
 # Ring Battle: The NFC Showdown in Middle-earth
 
-![Ring Battle Logo](https://example.com/ring-battle-logo.png)
+![Ring Battle Logo](images/ring-battle-logo.webp)
 
 ## One App to Rule Them All
 
