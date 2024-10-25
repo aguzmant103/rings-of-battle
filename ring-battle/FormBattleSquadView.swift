@@ -6,6 +6,8 @@ struct FormBattleSquadView: View {
     @StateObject private var nfcReader = NFCReader()
     @State private var selectedCharacter: String?
     @State private var alertItem: AlertItem?
+    
+    let characters = ["Warrior", "Mage", "Archer"]
 
     var body: some View {
         ZStack {
@@ -23,17 +25,13 @@ struct FormBattleSquadView: View {
                 Text("Form Battle Squad")
                     .font(.custom("Papyrus", size: 36))
                     .foregroundColor(.white)
-                    .padding()
+                    .padding(.top, 50)
 
                 HStack(spacing: 20) {
-                    CharacterButton(imageName: "archer", isSelected: selectedCharacter == "Archer") {
-                        selectedCharacter = "Archer"
-                    }
-                    CharacterButton(imageName: "warrior", isSelected: selectedCharacter == "Warrior") {
-                        selectedCharacter = "Warrior"
-                    }
-                    CharacterButton(imageName: "mage", isSelected: selectedCharacter == "Mage") {
-                        selectedCharacter = "Mage"
+                    ForEach(characters, id: \.self) { character in
+                        CharacterButton(character: character, isSelected: selectedCharacter == character) {
+                            selectedCharacter = character
+                        }
                     }
                 }
                 .padding()
@@ -130,7 +128,6 @@ struct FormBattleSquadView_Previews: PreviewProvider {
     }
 }
 
-// Add the AlertItem struct at the end of this file
 struct AlertItem: Identifiable {
     let id = UUID()
     let title: String

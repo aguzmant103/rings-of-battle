@@ -1,5 +1,6 @@
 import SwiftUI
 import CoreNFC
+import AVFoundation
 
 struct DuelView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -10,6 +11,9 @@ struct DuelView: View {
     @State private var showingResults: Bool = false
     @State private var errorMessage: String = ""
     @State private var showingError: Bool = false
+    @State private var isScanning: Bool = false
+    @State private var audioPlayer: AVAudioPlayer?
+    @State private var winner: String = ""
 
     var body: some View {
         ZStack {
@@ -36,11 +40,25 @@ struct DuelView: View {
                     Text("Player 2: \(player2)")
                         .foregroundColor(.white)
                         .padding()
+                    Text("Winner: \(winner)")
+                        .font(.custom("Papyrus", size: 24))
+                        .foregroundColor(.yellow)
+                        .padding()
+                        .background(Color.black.opacity(0.5))
+                        .cornerRadius(10)
+                        .padding()
+                } else if isScanning {
+                    Text("Summoning warrior...")
+                        .font(.custom("Papyrus", size: 24))
+                        .foregroundColor(.white)
+                        .padding()
+                        .scaleEffect(1 + 0.1 * sin(Double(Date().timeIntervalSince1970) * 5))
+                        .animation(.easeInOut(duration: 0.5).repeatForever(autoreverses: true), value: Date().timeIntervalSince1970)
                 } else {
                     Button(action: {
                         startScan()
                     }) {
-                        Text(currentPlayer == 1 ? "Start" : "Scan Player 2")
+                        Text(currentPlayer == 1 ? "Start Battle" : "Summon Player 2")
                     }
                     .buttonStyle(CustomDarkFantasyButtonStyle())
                 }
@@ -52,11 +70,17 @@ struct DuelView: View {
         .alert(isPresented: $showingError) {
             Alert(title: Text("Error"), message: Text(errorMessage), dismissButton: .default(Text("OK")))
         }
+        .onAppear {
+            setupAudioPlayer()
+        }
     }
 
     private func startScan() {
-        let alertMessage = currentPlayer == 1 ? "Player 1, present your warrior" : "Player 2, present your warrior"
+        isScanning = true
+        playSound()
+        let alertMessage = currentPlayer == 1 ? "Player 1, present your warrior's ring" : "Player 2, present your warrior's ring"
         nfcReader.scanNFC(alertMessage: alertMessage) { result in
+            isScanning = false
             switch result {
             case .success(let message):
                 if currentPlayer == 1 {
@@ -64,11 +88,26 @@ struct DuelView: View {
                     currentPlayer = 2
                 } else {
                     player2 = message
+                    determineWinner()
                     showingResults = true
                 }
+                playSound(success: true)
             case .failure(let error):
                 handleNFCError(error)
             }
+        }
+    }
+
+    private func determineWinner() {
+        switch (player1, player2) {
+        case ("Mage", "Warrior"), ("Warrior", "Archer"), ("Archer", "Mage"):
+            winner = "Player 1"
+        case ("Warrior", "Mage"), ("Archer", "Warrior"), ("Mage", "Archer"):
+            winner = "Player 2"
+        case (let p1, let p2) where p1 == p2:
+            winner = "It's a draw!"
+        default:
+            winner = "Invalid match-up"
         }
     }
 
@@ -86,6 +125,19 @@ struct DuelView: View {
             errorMessage = "Error: \(error.localizedDescription)"
         }
         showingError = true
+    }
+
+    private func setupAudioPlayer() {
+        guard let sound = Bundle.main.path(forResource: "scan_sound", ofType: "mp3") else { return }
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: URL(fileURLWithPath: sound))
+        } catch {
+            print("Could not setup audio player: \(error)")
+        }
+    }
+
+    private func playSound(success: Bool = false) {
+        audioPlayer?.play()
     }
 }
 

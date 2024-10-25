@@ -181,7 +181,7 @@ class NFCReader: NSObject, ObservableObject {
         // Create a proper NDEF text record with "en" language code
         let languageCode = "en".data(using: .utf8)!
         let statusByte: UInt8 = UInt8(languageCode.count) // UTF-8 encoding and language code length
-        var payload = Data([statusByte]) + languageCode + messageToWrite.data(using: .utf8)!
+        let payload = Data([statusByte]) + languageCode + messageToWrite.data(using: .utf8)!
         
         let textRecord = NFCNDEFPayload(
             format: .nfcWellKnown,
