@@ -2,13 +2,14 @@ import Foundation
 import CoreNFC
 
 @MainActor
-class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
+class NFCReader: NSObject, ObservableObject {
     private var nfcSession: NFCNDEFReaderSession?
     private var onCompletion: ((Result<String, Error>) -> Void)?
     private var messageToWrite: String?
     private var isWriteOperation: Bool = false
+    private var customAlertMessage: String?
 
-    func scanNFC(completion: @escaping (Result<String, Error>) -> Void) {
+    func scanNFC(alertMessage: String, completion: @escaping (Result<String, Error>) -> Void) {
         guard NFCNDEFReaderSession.readingAvailable else {
             completion(.failure(NFCError.notAvailable))
             return
@@ -16,8 +17,9 @@ class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
 
         onCompletion = completion
         isWriteOperation = false
+        customAlertMessage = alertMessage
         nfcSession = NFCNDEFReaderSession(delegate: self, queue: nil, invalidateAfterFirstRead: true)
-        nfcSession?.alertMessage = "Hold your iPhone near the NFC ring to read."
+        nfcSession?.alertMessage = alertMessage
         nfcSession?.begin()
     }
 
@@ -43,75 +45,80 @@ class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
         nfcSession?.begin()
     }
 
-    func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
-        guard !isWriteOperation else { return }
-        
-        guard let ndefMessage = messages.first,
-              let record = ndefMessage.records.first else {
-            onCompletion?(.failure(NFCError.invalidData))
-            return
-        }
+    nonisolated func readerSession(_ session: NFCNDEFReaderSession, didDetectNDEFs messages: [NFCNDEFMessage]) {
+        Task { @MainActor in
+            guard !isWriteOperation else { return }
+            
+            guard let ndefMessage = messages.first,
+                  let record = ndefMessage.records.first else {
+                onCompletion?(.failure(NFCError.invalidData))
+                return
+            }
 
-        switch record.typeNameFormat {
-        case .nfcWellKnown:
-            if let type = String(data: record.type, encoding: .utf8), type == "T" {
-                // This is a text record
-                if let payload = String(data: record.payload.dropFirst(), encoding: .utf8) {
+            switch record.typeNameFormat {
+            case .nfcWellKnown:
+                if let type = String(data: record.type, encoding: .utf8), type == "T" {
+                    // This is a text record
+                    if let payload = String(data: record.payload.dropFirst(), encoding: .utf8) {
+                        onCompletion?(.success(payload))
+                    } else {
+                        onCompletion?(.failure(NFCError.invalidData))
+                    }
+                } else {
+                    onCompletion?(.failure(NFCError.unsupportedFormat))
+                }
+            case .absoluteURI:
+                if let payload = String(data: record.payload, encoding: .utf8) {
                     onCompletion?(.success(payload))
                 } else {
                     onCompletion?(.failure(NFCError.invalidData))
                 }
-            } else {
+            default:
                 onCompletion?(.failure(NFCError.unsupportedFormat))
             }
-        case .absoluteURI:
-            if let payload = String(data: record.payload, encoding: .utf8) {
-                onCompletion?(.success(payload))
-            } else {
-                onCompletion?(.failure(NFCError.invalidData))
-            }
-        default:
-            onCompletion?(.failure(NFCError.unsupportedFormat))
+            
+            session.alertMessage = "Tag read successfully!"
+            session.invalidate()
         }
-        
-        session.invalidate()
     }
 
-    func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
-        guard let tag = tags.first else {
-            session.invalidate(errorMessage: "No tag found.")
-            return
-        }
-        
-        session.connect(to: tag) { error in
-            if let error = error {
-                session.invalidate(errorMessage: "Connection error: \(error.localizedDescription)")
+    nonisolated func readerSession(_ session: NFCNDEFReaderSession, didDetect tags: [NFCNDEFTag]) {
+        Task { @MainActor in
+            guard let tag = tags.first else {
+                session.invalidate(errorMessage: "No tag found.")
                 return
             }
             
-            tag.queryNDEFStatus { status, capacity, error in
-                guard error == nil else {
-                    session.invalidate(errorMessage: "Query error: \(error!.localizedDescription)")
+            session.connect(to: tag) { error in
+                if let error = error {
+                    session.invalidate(errorMessage: "Connection error: \(error.localizedDescription)")
                     return
                 }
                 
-                switch status {
-                case .notSupported:
-                    session.invalidate(errorMessage: "Tag is not NDEF compliant.")
-                case .readOnly:
-                    if self.isWriteOperation {
-                        session.invalidate(errorMessage: "Tag is read-only.")
-                    } else {
-                        self.readTag(tag, session: session)
+                tag.queryNDEFStatus { status, capacity, error in
+                    guard error == nil else {
+                        session.invalidate(errorMessage: "Query error: \(error!.localizedDescription)")
+                        return
                     }
-                case .readWrite:
-                    if self.isWriteOperation {
-                        self.writeTag(tag, session: session)
-                    } else {
-                        self.readTag(tag, session: session)
+                    
+                    switch status {
+                    case .notSupported:
+                        session.invalidate(errorMessage: "Tag is not NDEF compliant.")
+                    case .readOnly:
+                        if self.isWriteOperation {
+                            session.invalidate(errorMessage: "Tag is read-only.")
+                        } else {
+                            self.readTag(tag, session: session)
+                        }
+                    case .readWrite:
+                        if self.isWriteOperation {
+                            self.writeTag(tag, session: session)
+                        } else {
+                            self.readTag(tag, session: session)
+                        }
+                    @unknown default:
+                        session.invalidate(errorMessage: "Unknown tag status.")
                     }
-                @unknown default:
-                    session.invalidate(errorMessage: "Unknown tag status.")
                 }
             }
         }
@@ -131,9 +138,13 @@ class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
                             if let type = String(data: record.type, encoding: .utf8), type == "T" {
                                 // Text record
                                 let payload = record.payload
-                                // The first byte is the language code length
-                                let languageCodeLength = Int(payload[0])
-                                // Skip language code and status byte
+                                // The first byte contains the length of the language code
+                                let languageCodeLength = Int(payload[0] & 0x3F)
+                                // Ensure the payload is long enough
+                                guard payload.count > languageCodeLength else {
+                                    return "Invalid text record format"
+                                }
+                                // Skip status byte and language code
                                 let textStartIndex = 1 + languageCodeLength
                                 return String(data: payload.suffix(from: textStartIndex), encoding: .utf8)
                             } else {
@@ -169,7 +180,9 @@ class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
         
         // Create a proper NDEF text record with "en" language code
         let languageCode = "en".data(using: .utf8)!
-        var payload = Data([UInt8(languageCode.count)]) + languageCode + messageToWrite.data(using: .utf8)!
+        let statusByte: UInt8 = UInt8(languageCode.count) // UTF-8 encoding and language code length
+        var payload = Data([statusByte]) + languageCode + messageToWrite.data(using: .utf8)!
+        
         let textRecord = NFCNDEFPayload(
             format: .nfcWellKnown,
             type: "T".data(using: .utf8)!,
@@ -189,22 +202,29 @@ class NFCReader: NSObject, ObservableObject, NFCNDEFReaderSessionDelegate {
         }
     }
 
-    func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
-        if let readerError = error as? NFCReaderError {
-            if readerError.code != .readerSessionInvalidationErrorFirstNDEFTagRead,
-               readerError.code != .readerSessionInvalidationErrorUserCanceled {
+    nonisolated func readerSession(_ session: NFCNDEFReaderSession, didInvalidateWithError error: Error) {
+        Task { @MainActor in
+            if let readerError = error as? NFCReaderError {
+                if readerError.code != .readerSessionInvalidationErrorFirstNDEFTagRead,
+                   readerError.code != .readerSessionInvalidationErrorUserCanceled {
+                    onCompletion?(.failure(error))
+                }
+            } else {
                 onCompletion?(.failure(error))
             }
-        } else {
-            onCompletion?(.failure(error))
+            nfcSession = nil
+            customAlertMessage = nil
         }
-        nfcSession = nil
     }
 
-    func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
-        print("NFC reader session became active")
+    nonisolated func readerSessionDidBecomeActive(_ session: NFCNDEFReaderSession) {
+        Task { @MainActor in
+            print("NFC reader session became active")
+        }
     }
 }
+
+extension NFCReader: NFCNDEFReaderSessionDelegate {}
 
 enum NFCError: Error {
     case notAvailable

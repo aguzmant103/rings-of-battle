@@ -6,75 +6,80 @@
 //
 
 import SwiftUI
-import CoreNFC
 
 struct ContentView: View {
-    @StateObject private var nfcReader = NFCReader()
-    @State private var nfcMessage: String = "No NFC data"
-    @State private var inputText: String = ""
+    @State private var selectedOption: String?
 
     var body: some View {
-        VStack {
-            Text("NFC Ring Reader/Writer")
-                .font(.largeTitle)
-                .padding()
+        NavigationStack {
+            ZStack {
+                // Background Image
+                Image("ring-battle-logo")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .edgesIgnoringSafeArea(.all)
+                
+                // Semi-transparent overlay to improve text readability
+                Color.black.opacity(0.6)
+                    .edgesIgnoringSafeArea(.all)
+                
+                // Menu Content
+                VStack(spacing: 30) {
+                    Text("Ring Battle")
+                        .font(.custom("Papyrus", size: 48)) // You can replace "Papyrus" with any fantasy-style font you have
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .shadow(color: .red.opacity(0.5), radius: 10, x: 0, y: 0)
 
-            Text(nfcMessage)
-                .padding()
-
-            Button(action: {
-                nfcReader.scanNFC { result in
-                    switch result {
-                    case .success(let message):
-                        nfcMessage = "Read from NFC: \(message)"
-                    case .failure(let error):
-                        handleNFCError(error)
+                    NavigationLink(value: "Duel") {
+                        Text("Duel (offline)")
                     }
-                }
-            }) {
-                Text("Scan NFC Ring")
-                    .padding()
-                    .background(Color.blue)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
-            }
+                    .buttonStyle(CustomDarkFantasyButtonStyle())
 
-            TextField("Enter text to write", text: $inputText)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
-
-            Button(action: {
-                nfcReader.writeToNFC(inputText) { result in
-                    switch result {
-                    case .success:
-                        nfcMessage = "Successfully wrote to NFC tag"
-                    case .failure(let error):
-                        handleNFCError(error)
+                    NavigationLink(value: "FormBattleSquad") {
+                        Text("Form Battle Squad")
                     }
+                    .buttonStyle(CustomDarkFantasyButtonStyle())
+
+                    Button("Battle Arena (online)") {
+                        // TODO: Implement Battle Arena functionality
+                    }
+                    .buttonStyle(CustomDarkFantasyButtonStyle())
                 }
-            }) {
-                Text("Write to NFC Ring")
-                    .padding()
-                    .background(Color.green)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
             }
+            .navigationDestination(for: String.self) { destination in
+                switch destination {
+                case "Duel":
+                    DuelView()
+                case "FormBattleSquad":
+                    FormBattleSquadView()
+                default:
+                    EmptyView()
+                }
+            }
+            .navigationBarHidden(true)
         }
     }
+}
 
-    private func handleNFCError(_ error: Error) {
-        if let nfcError = error as? NFCReaderError {
-            switch nfcError.code {
-            case .readerSessionInvalidationErrorSystemIsBusy:
-                nfcMessage = "NFC is busy. Please try again in a moment."
-            default:
-                nfcMessage = "Error: \(nfcError.localizedDescription)"
-            }
-        } else if (error as NSError).domain == "NFCError" && (error as NSError).code == 203 {
-            nfcMessage = "NFC is not available. Please check your device settings."
-        } else {
-            nfcMessage = "Error: \(error.localizedDescription)"
-        }
+struct DarkFantasyButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .frame(minWidth: 200)
+            .background(
+                LinearGradient(gradient: Gradient(colors: [Color(#colorLiteral(red: 0.1, green: 0.1, blue: 0.1, alpha: 1)), Color(#colorLiteral(red: 0.3, green: 0.1, blue: 0.1, alpha: 1))]), startPoint: .top, endPoint: .bottom)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: 15)
+                    .stroke(Color(#colorLiteral(red: 0.8, green: 0.5, blue: 0.1, alpha: 1)), lineWidth: 2)
+            )
+            .foregroundColor(.white)
+            .font(.custom("Copperplate", size: 20)) // You can replace "Copperplate" with any fantasy-style font you have
+            .cornerRadius(15)
+            .shadow(color: .red.opacity(0.5), radius: 5, x: 0, y: 5)
+            .scaleEffect(configuration.isPressed ? 0.95 : 1)
     }
 }
 
